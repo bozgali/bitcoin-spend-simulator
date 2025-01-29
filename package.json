@@ -1,0 +1,44 @@
+// CoinMarketCap API Key (you’ll get this later)
+const API_KEY = "705eeff3-76df-4737-9bbb-fcc88746ce02";
+
+// Fetch Bitcoin Price
+async function fetchBitcoinPrice() {
+  const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC`;
+  const response = await fetch(url, {
+    headers: {
+      "X-CMC_PRO_API_KEY": API_KEY,
+    },
+  });
+  const data = await response.json();
+  return data.data.BTC.quote.USD.price;
+}
+
+// Update Balance
+async function updateBalance() {
+  const bitcoinAmount = document.getElementById("bitcoinAmount").value;
+  const bitcoinPrice = await fetchBitcoinPrice();
+  const balance = bitcoinAmount * bitcoinPrice;
+
+  document.getElementById("bitcoinPrice").innerText = `$${bitcoinPrice.toLocaleString()}`;
+  document.getElementById("balance").innerText = balance.toLocaleString();
+}
+
+// Load Items
+function loadItems() {
+  const items = [
+    { name: "Lamborghini Aventador", price: 500000 },
+    { name: "Private Island", price: 15000000 },
+    { name: "SpaceX Trip", price: 50000000 },
+    // Add more items from Neal.Fun's list
+  ];
+
+  const itemsContainer = document.getElementById("items");
+  items.forEach((item) => {
+    const itemElement = document.createElement("div");
+    itemElement.innerText = `${item.name} - $${item.price.toLocaleString()}`;
+    itemsContainer.appendChild(itemElement);
+  });
+}
+
+// Initialize
+loadItems();

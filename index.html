@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bitcoin Spend Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bitcoin Spend Simulator</h1>
+      <label for="bitcoinAmount">Enter Bitcoin Amount:</label>
+      <input type="number" id="bitcoinAmount" placeholder="e.g., 1" />
+      <button onclick="updateBalance()">Update Balance</button>
+      <p>Current Bitcoin Price: <span id="bitcoinPrice">Loading...</span></p>
+      <p>Your Balance: <span id="balance">0</span> BTC</p>
+      <h2>What would you like to buy?</h2>
+      <div id="items"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
